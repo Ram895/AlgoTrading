@@ -6,7 +6,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import math
-IEX_CLOUD_API_TOKEN = 'Tpk_059b97af715d417d9f49f50b51b1c448'
+
 
 # %matplotlib inline
 stocks = pd.read_csv('D:/Networks/security/data_sience/algo_trading/spdr-product-data-us-en.csv')
