@@ -6,7 +6,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import math
-
+import secrets
 
 # %matplotlib inline
 stocks = pd.read_csv('D:/Networks/security/data_sience/algo_trading/spdr-product-data-us-en.csv')
@@ -22,7 +22,7 @@ range='5y'
 symbols,closes,lows,highs,opens,volumes,prices,dates=[],[],[],[],[],[],[],[]
 for symbol in tickers:
     print('symbol is : ',symbol)
-    api_url = f'https://sandbox.iexapis.com/stable/stock/twtr/chart/dynamic?symbols={symbol}&types=price,quote&range=5y&token={IEX_CLOUD_API_TOKEN}'
+    api_url = f'https://sandbox.iexapis.com/stable/stock/twtr/chart/dynamic?symbols={symbol}&types=price,quote&range=5y&token={secrets.IEX_CLOUD_API_TOKEN}'
     data = requests.get(api_url).json()
     print(data)
 
