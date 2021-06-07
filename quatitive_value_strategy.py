@@ -5,9 +5,9 @@ import requests
 #import xlswriter
 from scipy import stats
 import math
-
+import secrets
 #importing our list of stocks & API Token
-IEX_CLOUD_API_TOKEN = 'Tpk_059b97af715d417d9f49f50b51b1c448'
+
 
 stocks=pd.read_csv('D:/Networks/security/data_sience/algo_trading/sp_500_stocks.csv')
 stocks=stocks.dropna()
@@ -16,7 +16,7 @@ print(stocks)
 
 #Making Our First API Call
 symbol='MMM'
-api_url=f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={IEX_CLOUD_API_TOKEN}'
+api_url=f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote?token={secrets.IEX_CLOUD_API_TOKEN}'
 data=requests.get(api_url)
 print(data)
 data=data.json()
@@ -45,7 +45,7 @@ my_columns = ['Symbol','Price','Price to Earnings Ratio','Number of Shares to Bu
 
 final_dataframe = pd.DataFrame(columns=my_columns)
 for symbol_string in symbol_strings:
-    batch_api_call_url = api_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote&token={IEX_CLOUD_API_TOKEN}'
+    batch_api_call_url = api_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote&token={secrets.IEX_CLOUD_API_TOKEN}'
     data = requests.get(batch_api_call_url).json()
     # print(data)
     i = 0
@@ -101,7 +101,7 @@ print(f'Protfolio has {len(final_dataframe.index)} Shares')
 
 #Building a Better(and More Realistic) Momentum Strategy
 symbol='AAPL'
-batch_api_call_url = api_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol}&types=quote,advanced-stats&token={IEX_CLOUD_API_TOKEN}'
+batch_api_call_url = api_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol}&types=quote,advanced-stats&token={secrets.IEX_CLOUD_API_TOKEN}'
 data = requests.get(batch_api_call_url).json()
 print(data)
 #Price-to-earning ratio
@@ -162,7 +162,7 @@ for i in range(0, len(symbol_groups)):
 
 
 for symbol_string in symbol_strings:
-    batch_api_call_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,advanced-stats&token={IEX_CLOUD_API_TOKEN}'
+    batch_api_call_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,advanced-stats&token={secrets.IEX_CLOUD_API_TOKEN}'
     data = requests.get(batch_api_call_url).json()
     #print(data)
     
